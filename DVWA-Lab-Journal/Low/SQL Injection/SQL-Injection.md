@@ -30,7 +30,7 @@ We started with this vulnerability because it is common and can be easily exploi
 - Let's check first what are the things we can do in the vulnerable website.
 - By providing random number in the input form. It will give you the result. Interesting!
 
-![Providing inputs](https://github.com/jum4nj1m/DVWA-Lab-Journal/blob/master/DVWA-Lab-Journal/Low/SQL Injection/Images/navigate.png)
+![Providing inputs](https://github.com/jum4nj1m/DVWA-Lab-Journal/blob/master/DVWA-Lab-Journal/Images/navigate.png)
 
 - Entering random strings and numbers produced no result. Might be that the application accepts it but drops it since it's not part of the userID list.
 
@@ -42,13 +42,13 @@ We started with this vulnerability because it is common and can be easily exploi
 
 - To test for vulnerability, I entered a single `'` in the input form. The resulting error confirmed that the application was passing input directly to the SQL database, and the database interpreted our input as part of the SQL query logic rather than as plain data.
 
-![Error message received](https://github.com/jum4nj1m/DVWA-Lab-Journal/blob/master/DVWA-Lab-Journal/Low/SQL Injection/Images/error.png)
+![Error message received](https://github.com/jum4nj1m/DVWA-Lab-Journal/blob/master/DVWA-Lab-Journal/Images/error.png)
 
 - As you can see it the image above, it appears that the error came from MariaDB server. Since MariaDB was forked from MySQL, there's a high chance that the syntax for both are the same. We can use MySQL as reference if we'll check what syntax are available to us. Before that, let us use the most common command to perform sql injection which is " ' OR 1=1".
 
 - As shown in the image above, the error originated from the MariaDB server. Because MariaDB was also developed by MySQL developers, I think their syntax must be highly compatible. We can use MySQL documentation as a reference for further exploitation. For now, however, we will simply test with the most common SQL injection payload: `' OR 1=1`.
 
-![SQL Injection](https://github.com/jum4nj1m/DVWA-Lab-Journal/blob/master/DVWA-Lab-Journal/Low/SQL Injection/Images/injection.png)
+![SQL Injection](https://github.com/jum4nj1m/DVWA-Lab-Journal/blob/master/DVWA-Lab-Journal/Images/injection.png)
 
 - It worked! I am now able to see the available users in the database and we have confirmed that this site is vulnerable to SQL injection.
 
@@ -84,18 +84,18 @@ SELECT first_name, last_name FROM users WHERE TRUE;
 3. **CODE REVIEW**
 - Since the source code is available, we reviewed it to understand how the query works. Upon checking, we confirmed that the input is captured as a value and concatenated into the `$query` variable. It is then used in the `mysqli_query` function.
 
-![Source-code](https://github.com/jum4nj1m/DVWA-Lab-Journal/blob/master/DVWA-Lab-Journal/Low/SQL Injection/Images/sql-sourcecode.png)
+![Source-code](https://github.com/jum4nj1m/DVWA-Lab-Journal/blob/master/DVWA-Lab-Journal/Images/sql-sourcecode.png)
 
 4. **DYNAMIC SCANNING**
 - Let us check out if the vulnerability can be detected in when we use OWASP ZAP. I opened up the application and turned on the proxy so ZAP can intercept my traffic. After sending a traffic in the input form. The URL will appear in the "History" tab.
 
 - We then right-clicked the link and selected **Attack -> Active Scan.**
 
-![Web URL](https://github.com/jum4nj1m/DVWA-Lab-Journal/blob/master/DVWA-Lab-Journal/Low/SQL Injection/Images/owasp-zap.png)
+![Web URL](https://github.com/jum4nj1m/DVWA-Lab-Journal/blob/master/DVWA-Lab-Journal/Images/owasp-zap.png)
 
 - After completing the scan, we went to "Alerts" to check the findings. Based on the results, ZAP found two High Alerts related to SQL injection and XSS. Focusing on SQL injection, ZAP detected it as vulnerable due to the SQL syntax error found during the active scan.
 
-![OWASP ZAP result](https://github.com/jum4nj1m/DVWA-Lab-Journal/blob/master/DVWA-Lab-Journal/Low/SQL Injection/Images/sql-result.png)
+![OWASP ZAP result](https://github.com/jum4nj1m/DVWA-Lab-Journal/blob/master/DVWA-Lab-Journal/Images/sql-result.png)
 
 - The root cause behind this vulnerability is the unparameterized queries as the inputs are directly embed into the query string.
 
