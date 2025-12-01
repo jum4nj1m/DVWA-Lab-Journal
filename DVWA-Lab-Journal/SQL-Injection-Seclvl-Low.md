@@ -25,7 +25,7 @@ Step-by-step walkthrough:
 1. Let's check first what are the things we can do in the vulnerable website.
 - By providing random number in the input form. It will give you the result. Interesting!
 
-![Providing inputs](../images/navigate.png)
+![Providing inputs](DVWA-Lab-Journal/Images/navigate.png)
 
 - When random strings and numbers were provided, it will not show any result.
 
@@ -35,7 +35,7 @@ Step-by-step walkthrough:
 
 - To know if an application is vulnerable to SQL injection, put an "'" in the input form. If it resulted to an error, it means that the web application does not do input validation and the input can communicate to the database. 
 
-![Error message received](../images/error.png)
+![Error message received](DVWA-Lab-Journal/Images/error.png)
 
 - As you can see it the image above, it appears that the error came from MariaDB server. We can take a look at what syntax does MariaDB server use to see what queries we can do but before that, let us use the most common command to perform sql injection which is " ' OR 1=1".
 
