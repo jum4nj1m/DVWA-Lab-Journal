@@ -47,7 +47,7 @@ Step-by-step walkthrough:
 
 - Since the source code is available to us, we'll review it to understand how the query works. Upon checking, we have confirmed that the input will be captured as value and concatinated to the $query variable. It will then be used in the result variable to communicate to **mysqli_query**.
 
-![Source-code](https://github.com/jum4nj1m/DVWA-Lab-Journal/blob/master/DVWA-Lab-Journal/images/sql_sourcecode.png)
+![Source-code](https://github.com/jum4nj1m/DVWA-Lab-Journal/blob/master/DVWA-Lab-Journal/Images/sql-sourcecode.png)
 
 
 4. **DYNAMIC SCANNING**
@@ -55,7 +55,7 @@ Step-by-step walkthrough:
 
 - We can then right click the link and click "Attack" -> "Active Scan"
 
-![Web URL](https://github.com/jum4nj1m/DVWA-Lab-Journal/blob/master/DVWA-Lab-Journal/images/owasp-zap.png)
+![Web URL](https://github.com/jum4nj1m/DVWA-Lab-Journal/blob/master/DVWA-Lab-Journal/Images/owasp-zap.png)
 
 - After we finish the scan, go to "Alerts" to check what alerts found by our tool. Based on the results, it found 2 H
 
