@@ -35,7 +35,7 @@ Step-by-step walkthrough:
 
 - To know if an application is vulnerable to SQL injection, put an "'" in the input form. If it resulted to an error, it means that the web application does not do input validation and the input can communicate to the database. 
 
-![Error message received](DVWA-Lab-Journal/Images/error.png)
+![Error message received](https://github.com/jum4nj1m/DVWA-Lab-Journal/blob/master/DVWA-Lab-Journal/Images/error.png)
 
 - As you can see it the image above, it appears that the error came from MariaDB server. We can take a look at what syntax does MariaDB server use to see what queries we can do but before that, let us use the most common command to perform sql injection which is " ' OR 1=1".
 
