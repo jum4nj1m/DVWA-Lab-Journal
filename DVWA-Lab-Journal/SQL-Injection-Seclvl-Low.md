@@ -11,14 +11,12 @@ We started with this vulnerability because it is common and can be easily exploi
 ---
 
 ## ⭐ Situation
-Describe the context:
 - The environment setup that we use is podman, and OWASP ZAP.
 - While looking at the SQL injection room, I noticed the input form did not enforce strong input validation (Input form by the way is a type of user interface that collects information from a user). Since input/login forms are common attack targets in real-world applications, I decided to test whether the userID field was vulnerable to SQL injection. This scenario  mirrors a typical penetration test where an attacker attempts to bypass authentication by manipulating query logic.
 
 ---
 
 ## 🎯 Task
-The primary objectives of this exercise were:
 - Identify whether the `userID` input field was vulnerable to SQL injection.
 - Exploit the vulnerability to bypass authentication and extract data from the database.
 - Validate findings using both manual testing and automated scanning tools (OWASP ZAP).
@@ -28,7 +26,6 @@ The primary objectives of this exercise were:
 ---
 
 ## 🛠️ Action
-Step-by-step walkthrough:
 1. **Exploration**
 - Let's check first what are the things we can do in the vulnerable website.
 - By providing random number in the input form. It will give you the result. Interesting!
@@ -187,12 +184,13 @@ if( isset( $_REQUEST[ 'Submit' ] ) ) {
 
 - References:
 [SQL Injection - OWASP](https://www.owasp.org/index.php/SQL_Injection)
+
 [SQL Injection Cheatsheet](https://pentestmonkey.net/cheat-sheet/sql-injection/mysql-sql-injection-cheat-sheet)
 
 ---
 
 ## 📖 Conclusion
-- This exercise demonstrated how SQL injection can bypass authentication and expose sensitive data when unparameterized queries are used. By exploiting the vulnerability, we confirmed the risk, validated it with dynamic scanning tools, and identified the insecure coding practice. The remediation using parameterized queries ensures user input is treated as data, not SQL logic. 
-- This room highlights the importance of secure coding practices in preventing high‑impact vulnerabilities.
+- This room demonstrated how SQL injection can bypass authentication and expose sensitive data when unparameterized queries are used. By exploiting the vulnerability, we confirmed the risk, validated it with dynamic scanning tools, and identified the insecure coding practice. The remediation using parameterized queries ensures user input is treated as data, not SQL logic. 
+- This highlights the importance of secure coding practices in preventing high‑impact vulnerabilities.
 
 
